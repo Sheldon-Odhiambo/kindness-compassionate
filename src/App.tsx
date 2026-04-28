@@ -27,8 +27,8 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const aboutUsCopy = [
     "At Kindness & Compassionate LLC, we believe that every individual deserves to be treated with the utmost respect and dignity. Our mission is to provide personalized, non-medical in-home care that empowers our clients while giving their families the peace of mind they deserve.",
-    "Founded on the principles of warmth and integrity, we handpick caregivers who are not only trained professionals but also truly compassionate people. For us, providing care is not just a service—it is a calling to make a tangible difference in the lives of those we serve.",
-    "Because caring is not just what we do—it’s who we are. We proudly serve Seattle and surrounding areas, including Port Orchard, Bremerton, Silverdale, Poulsbo, and Bainbridge Island, ensuring that your loved ones receive the localized attention and support they need, right in the comfort of their own home."
+    "Founded on the principles of warmth and integrity, we handpick caregivers who are not only trained professionals but also truly compassionate people. For us, providing care is not just a service it is a calling to make a tangible difference in the lives of those we serve.",
+    "Because caring is not just what we do it’s who we are. We proudly serve Seattle and surrounding areas, including Port Orchard, Bremerton, Silverdale, Poulsbo, and Bainbridge Island, ensuring that your loved ones receive the localized attention and support they need, right in the comfort of their own home."
   ];
 
   return (
