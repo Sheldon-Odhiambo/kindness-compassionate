@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Phone, Heart, Users, Brain, Activity, HandHeart, Coffee, Clock, Sparkles, Utensils, Pill, Droplets, ArrowDownUp, Car, ClipboardList, Mail, Menu, X, DollarSign, TrendingUp } from 'lucide-react';
+import { Phone, Heart, Users, Brain, Activity, HandHeart, Coffee, Clock, Sparkles, Utensils, Pill, Droplets, ArrowDownUp, Car, ClipboardList, Mail, Menu, X, DollarSign, TrendingUp, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { SERVICES } from '@/src/constants';
 import { WaveDivider } from '@/src/components/WaveDivider';
 
@@ -25,10 +25,53 @@ const serviceIcons: Record<string, any> = {
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
+  const [careerForm, setCareerForm] = useState({ name: '', email: '' });
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`New Inquiry from ${contactForm.name}`);
+    const body = encodeURIComponent(`Name: ${contactForm.name}\nEmail: ${contactForm.email}\n\nMessage:\n${contactForm.message}`);
+    window.location.href = `mailto:kindcompassionatellc@gmail.com?subject=${subject}&body=${body}`;
+  };
+
+  const handleCareerSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Career Application: ${careerForm.name}`);
+    const body = encodeURIComponent(`Hi Kindness & Compassionate Team,\n\nI am interested in joining your team.\n\nName: ${careerForm.name}\nEmail: ${careerForm.email}\n\n(Please attach your resume to this email before sending)`);
+    window.location.href = `mailto:kindcompassionatellc@gmail.com?subject=${subject}&body=${body}`;
+  };
   const aboutUsCopy = [
-    "At Kindness & Compassionate LLC, we believe that every individual deserves to be treated with the utmost respect and dignity. Our mission is to provide personalized, non-medical in-home care that empowers our clients while giving their families the peace of mind they deserve.",
-    "Founded on the principles of warmth and integrity, we handpick caregivers who are not only trained professionals but also truly compassionate people. For us, providing care is not just a service it is a calling to make a tangible difference in the lives of those we serve.",
-    "Because caring is not just what we do it’s who we are. We proudly serve Seattle and surrounding areas, including Port Orchard, Bremerton, Silverdale, Poulsbo, and Bainbridge Island, ensuring that your loved ones receive the localized attention and support they need, right in the comfort of their own home."
+    "At Kindness & Compassionate LLC, we believe that every individual deserves to be treated with the utmost respect and dignity. Our mission is to provide personalized, non-medical in-home care that empowers our clients while giving their families the peace of mind they deserve. We also proudly accept long-term care insurance to ensure our services are accessible to those who need them most.",
+    "Founded on the principles of warmth and integrity, we handpick caregivers who are not only trained professionals but also truly compassionate people. For us, providing care is not just a service—it is a calling to make a tangible difference in the lives of those we serve.",
+    "Because caring is not just what we do—it’s who we are. We proudly serve Washington State, including King County, Pierce County, Skagit County, Snohomish County, and all neighboring counties. We are also partnered with Community Transit in the community partnership to provide our employees and clients with resources to use public transportation across Washington state for $1 or less, ensuring our community stays connected and mobile."
+  ];
+
+  const REVIEWS = [
+    {
+      name: "Sarah Jenkins",
+      relation: "Daughter of Client",
+      text: "The caregivers from Kindness & Compassionate have been a godsend. They treat my mother with such patience and genuine affection. It's not just a job for them; it's a way of life.",
+      stars: 5
+    },
+    {
+      name: "Michael Chen",
+      relation: "Full-time Caregiver",
+      text: "We needed respite care for my father, and the team here stepped in seamlessly. They are professional, punctual, and highly skilled in dementia care. Highly recommended.",
+      stars: 5
+    },
+    {
+      name: "Linda Thompson",
+      relation: "Client",
+      text: "I was hesitant about having someone in my home, but my caregiver has become such a dear friend. She helps me with my daily tasks with such dignity and grace.",
+      stars: 5
+    },
+    {
+      name: "David Wilson",
+      relation: "Son of Client",
+      text: "Kindness & Compassionate LLC provided 24-hour care for my father during his final months. Their support for the entire family was as valuable as the care they gave to him.",
+      stars: 5
+    }
   ];
 
   return (
@@ -36,17 +79,17 @@ export default function App() {
       <nav className="sticky top-0 z-50 bg-white border-b border-stone-200">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between relative">
           <div className="absolute -bottom-8 left-4 z-50">
-            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center border-4 border-stone-100 shadow-xl transition-transform hover:scale-105 active:scale-95 cursor-pointer">
-             <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center border-2 border-pink-200">
-                <img 
+            <a href="#" className="block w-20 h-20 bg-white rounded-full flex items-center justify-center border-4 border-stone-100 shadow-xl transition-transform hover:scale-105 active:scale-95 cursor-pointer">
+              <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center border-2 border-pink-200">
+                   <img 
                   src="/assets/logo2.png" 
                   alt="Kindness and Compassionate Logo" 
                   className="w-10 h-10 object-contain"/>
               </div>
-            </div>
+            </a>
           </div>
-          <div className="flex items-center gap-2 pl-24">
-            <span className="font-serif font-bold text-2xl text-stone-950">Kindness & Compassionate</span>
+          <div className="flex items-center gap-2 pl-20 md:pl-28">
+            <span className="font-serif font-bold text-lg md:text-2xl text-stone-950 leading-tight">Kindness & Compassionate</span>
           </div>
           <div className="hidden md:flex gap-8 font-medium text-stone-700">
             <a href="#about" className="hover:text-pink-700 transition-colors">About Us</a>
@@ -82,7 +125,7 @@ export default function App() {
       </nav>
 
       <header className="bg-stone-950 text-white overflow-hidden relative">
-        <div className="flex flex-col md:flex-row min-h-[600px] pb-24 md:pb-0">
+        <div className="flex flex-col md:flex-row min-h-[600px]">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -130,43 +173,40 @@ export default function App() {
             <div className="absolute inset-0 bg-gradient-to-t from-stone-950/50 to-transparent"></div>
           </motion.div>
         </div>
-        
-        {/* The Wave Divider overlaps the bottom of the header */}
-        <div className="absolute bottom-0 left-0 w-full z-20 text-stone-50">
-          <WaveDivider />
-        </div>
       </header>
       
-      <section id="about" className="py-24 bg-stone-50 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-20 items-center">
-            <div className="grid grid-cols-2 gap-4 relative">
+      <div className="bg-stone-50"><WaveDivider /></div>
+
+      <section id="about" className="pt-36 pb-24 md:py-24 bg-stone-50 relative overflow-hidden scroll-mt-32 md:scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div className="grid grid-cols-2 gap-3 md:gap-4 relative">
                 <div className="absolute -inset-10 bg-pink-100/50 rounded-full blur-3xl -z-10 animate-pulse"></div>
                 <motion.img 
                   whileHover={{ scale: 1.05, rotate: 0 }}
                   src="/assets/about11.jpg" 
                   alt="Professional caregiver" 
-                  className="aspect-square object-cover rounded-3xl shadow-xl -rotate-3 transition-all duration-500" 
+                  className="aspect-square object-cover rounded-2xl md:rounded-3xl shadow-xl -rotate-2 md:-rotate-3 transition-all duration-500" 
                   referrerPolicy="no-referrer" 
                 />
                 <motion.img 
                   whileHover={{ scale: 1.05, rotate: 0 }}
                   src="/assets/about2.jpg" 
                   alt="Elderly client smiling" 
-                  className="aspect-square object-cover rounded-3xl shadow-xl rotate-2 transition-all duration-500 mt-12" 
+                  className="aspect-square object-cover rounded-2xl md:rounded-3xl shadow-xl rotate-1 md:rotate-2 transition-all duration-500 mt-8 md:mt-12" 
                   referrerPolicy="no-referrer" 
                 />
                 <motion.img 
                   whileHover={{ scale: 1.05, rotate: 0 }}
                   src="/assets/about4.jpg" 
                   alt="Holding hands care" 
-                  className="aspect-square object-cover rounded-3xl shadow-xl rotate-3 transition-all duration-500 -mt-12" 
+                  className="aspect-square object-cover rounded-2xl md:rounded-3xl shadow-xl rotate-2 md:rotate-3 transition-all duration-500 -mt-8 md:-mt-12" 
                   referrerPolicy="no-referrer" 
                 />
                 <motion.img 
                   whileHover={{ scale: 1.05, rotate: 0 }}
                   src="/assets/about3.jpg" 
                   alt="Comfortable home environment" 
-                  className="aspect-square object-cover rounded-3xl shadow-xl -rotate-2 transition-all duration-500" 
+                  className="aspect-square object-cover rounded-2xl md:rounded-3xl shadow-xl -rotate-1 md:-rotate-2 transition-all duration-500" 
                   referrerPolicy="no-referrer" 
                 />
             </div>
@@ -187,13 +227,13 @@ export default function App() {
         </div>
       </section>
 
-      <section id="careers" className="py-24 bg-pink-50/50">
+      <section id="careers" className="py-24 bg-pink-50/50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div className="space-y-8">
                 <div className="inline-block px-4 py-1 bg-pink-100 text-pink-700 rounded-full text-xs font-bold tracking-widest uppercase">Join Our Team</div>
                 <h2 className="font-serif text-5xl text-stone-950 leading-tight">Now Hiring Compassionate Caregivers.</h2>
-                <p className="text-xl text-stone-600 leading-relaxed">We are looking for dedicated individuals to join our team in Port Orchard, Bremerton, Silverdale, Poulsbo, and Bainbridge Island.</p>
+                <p className="text-xl text-stone-600 leading-relaxed">We are looking for dedicated individuals to join our team across King, Pierce, Snohomish, and Skagit counties.</p>
                 
                 <div className="grid md:grid-cols-2 gap-6">
                     <div className="bg-white p-8 rounded-3xl shadow-sm border border-pink-100/50">
@@ -215,7 +255,7 @@ export default function App() {
                         <h4 className="font-bold text-xl mb-4 text-stone-900">Our Requirements</h4>
                         <ul className="space-y-3 text-stone-600">
                             <li className="flex items-start gap-2 italic"> <span className="text-pink-600">★</span> Compassionate heart</li>
-                            <li className="flex items-start gap-2 italic"> <span className="text-pink-600">★</span> Dependable & punctual</li>
+                            <li className="flex items-start gap-2 italic"> <span className="text-pink-600">★</span> Car, valid license & insurance</li>
                             <li className="flex items-start gap-2 italic"> <span className="text-pink-600">★</span> Experience preferred</li>
                             <li className="flex items-start gap-2 italic"> <span className="text-pink-600">★</span> CNA/HCA certificates +</li>
                         </ul>
@@ -264,30 +304,44 @@ export default function App() {
               className="bg-white p-10 rounded-[40px] shadow-2xl border border-stone-100 lg:sticky lg:top-32"
             >
                 <h3 className="font-serif text-3xl mb-8">Career Application</h3>
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleCareerSubmit}>
                     <div className="space-y-2 text-stone-400">
                       <label className="text-sm font-bold uppercase tracking-widest text-stone-500 pl-1">Your Full Name</label>
-                      <input type="text" placeholder="John Doe" className="w-full p-4 bg-stone-50 border border-stone-200 rounded-2xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all" />
+                      <input 
+                        required
+                        type="text" 
+                        placeholder="John Doe" 
+                        value={careerForm.name}
+                        onChange={(e) => setCareerForm({ ...careerForm, name: e.target.value })}
+                        className="w-full p-4 bg-stone-50 border border-stone-200 rounded-2xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all" 
+                      />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-bold uppercase tracking-widest text-stone-500 pl-1">Email Address</label>
-                      <input type="email" placeholder="john@example.com" className="w-full p-4 bg-stone-50 border border-stone-200 rounded-2xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all" />
+                      <input 
+                        required
+                        type="email" 
+                        placeholder="john@example.com" 
+                        value={careerForm.email}
+                        onChange={(e) => setCareerForm({ ...careerForm, email: e.target.value })}
+                        className="w-full p-4 bg-stone-50 border border-stone-200 rounded-2xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all" 
+                      />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-bold uppercase tracking-widest text-stone-500 pl-1">Resume / CV</label>
                       <input type="file" className="w-full p-4 bg-stone-50 border border-stone-200 rounded-2xl file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-pink-700 hover:file:bg-pink-100" />
                     </div>
-                    <button className="w-full bg-pink-700 text-white p-5 rounded-2xl font-bold text-lg hover:bg-pink-800 shadow-lg shadow-pink-600/20 active:scale-95 transition-all">
+                    <button type="submit" className="w-full bg-pink-700 text-white p-5 rounded-2xl font-bold text-lg hover:bg-pink-800 shadow-lg shadow-pink-600/20 active:scale-95 transition-all">
                       Submit My Application
                     </button>
-                    <p className="text-center text-stone-400 text-sm">We typically respond within 2-3 business days.</p>
+                    <p className="text-center text-stone-400 text-sm">Submit here to open your mail client with your details.</p>
                 </form>
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section id="services" className="py-32 bg-white relative">
+      <section id="services" className="py-32 bg-white relative scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-24">
             <div className="inline-block px-4 py-1 bg-pink-100 text-pink-700 rounded-full text-xs font-bold tracking-widest uppercase mb-4">Our Services</div>
@@ -343,7 +397,44 @@ export default function App() {
         </div>
       </section>
 
-      <section id="contact" className="py-32 bg-stone-50 relative overflow-hidden">
+      <section id="reviews" className="py-32 bg-white relative overflow-hidden scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <div className="inline-block px-4 py-1 bg-stone-200 text-stone-600 rounded-full text-xs font-bold tracking-widest uppercase mb-4">Testimonials</div>
+            <h2 className="font-serif text-5xl text-stone-950 mb-6">What Families Are Saying.</h2>
+            <p className="text-xl text-stone-600 font-light">Real stories of kindness and compassion from those we serve.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {REVIEWS.map((review, i) => (
+              <motion.div 
+                key={review.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="bg-stone-50 p-8 rounded-[32px] border border-stone-100 shadow-sm flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex gap-1 mb-6">
+                    {[...Array(review.stars)].map((_, i) => (
+                      <Heart key={i} className="w-4 h-4 text-pink-600 fill-pink-600" />
+                    ))}
+                  </div>
+                  <p className="text-stone-600 italic leading-relaxed mb-8">"{review.text}"</p>
+                </div>
+                <div className="border-t border-stone-200 pt-6">
+                  <p className="font-bold text-stone-950">{review.name}</p>
+                  <p className="text-sm text-stone-400 font-medium">{review.relation}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="py-32 bg-stone-50 relative overflow-hidden scroll-mt-20">
         <div className="absolute inset-0 z-0">
           <img 
             src="/assets/backimg.jpeg" 
@@ -399,26 +490,47 @@ export default function App() {
                 <div className="absolute top-0 right-0 -mt-16 -mr-16 w-48 h-48 bg-pink-50 rounded-full opacity-40"></div>
                 <div className="absolute bottom-0 left-0 -mb-16 -ml-16 w-32 h-32 bg-amber-50 rounded-full opacity-40"></div>
                 
-                <h3 className="font-serif text-2xl md:text-3xl mb-6 md:mb-10 relative z-10 text-center md:text-left">Send Us a Message</h3>
-                <form className="space-y-4 md:space-y-6 relative z-10">
+                <h3 className="font-serif text-3xl mb-10 relative z-10 text-center md:text-left">Send Us a Message</h3>
+                <form className="space-y-4 md:space-y-6 relative z-10" onSubmit={handleContactSubmit}>
                     <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                       <div className="space-y-1 md:space-y-2">
                         <label className="text-[10px] md:text-sm font-bold uppercase tracking-widest text-stone-400 pl-1">Full Name</label>
-                        <input type="text" placeholder="Jane Smith" className="w-full p-3 md:p-4 bg-stone-50 border border-stone-100 rounded-xl md:rounded-2xl focus:ring-2 focus:ring-pink-500 outline-none transition-all text-sm md:text-base" />
+                        <input 
+                          required
+                          type="text" 
+                          placeholder="Jane Smith" 
+                          value={contactForm.name}
+                          onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                          className="w-full p-3 md:p-4 bg-stone-50 border border-stone-100 rounded-xl md:rounded-2xl focus:ring-2 focus:ring-pink-500 outline-none transition-all text-sm md:text-base" 
+                        />
                       </div>
                       <div className="space-y-1 md:space-y-2">
                         <label className="text-[10px] md:text-sm font-bold uppercase tracking-widest text-stone-400 pl-1">Email Address</label>
-                        <input type="email" placeholder="jane@email.com" className="w-full p-3 md:p-4 bg-stone-50 border border-stone-100 rounded-xl md:rounded-2xl focus:ring-2 focus:ring-pink-500 outline-none transition-all text-sm md:text-base" />
+                        <input 
+                          required
+                          type="email" 
+                          placeholder="jane@email.com" 
+                          value={contactForm.email}
+                          onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                          className="w-full p-3 md:p-4 bg-stone-50 border border-stone-100 rounded-xl md:rounded-2xl focus:ring-2 focus:ring-pink-500 outline-none transition-all text-sm md:text-base" 
+                        />
                       </div>
                     </div>
                     <div className="space-y-1 md:space-y-2">
                       <label className="text-[10px] md:text-sm font-bold uppercase tracking-widest text-stone-400 pl-1">Your Message</label>
-                      <textarea placeholder="How can we help you and your family?" rows={4} className="w-full p-3 md:p-4 bg-stone-50 border border-stone-100 rounded-xl md:rounded-2xl focus:ring-2 focus:ring-pink-500 outline-none transition-all resize-none text-sm md:text-base"></textarea>
+                      <textarea 
+                        required
+                        placeholder="How can we help you and your family?" 
+                        rows={4} 
+                        value={contactForm.message}
+                        onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                        className="w-full p-3 md:p-4 bg-stone-50 border border-stone-100 rounded-xl md:rounded-2xl focus:ring-2 focus:ring-pink-500 outline-none transition-all resize-none text-sm md:text-base"
+                      ></textarea>
                     </div>
-                    <button className="w-full bg-pink-700 text-white p-4 md:p-5 rounded-xl md:rounded-2xl font-bold text-base md:text-lg hover:bg-pink-800 shadow-xl shadow-pink-600/20 active:scale-[0.98] transition-all">
+                    <button type="submit" className="w-full bg-pink-700 text-white p-4 md:p-5 rounded-xl md:rounded-2xl font-bold text-base md:text-lg hover:bg-pink-800 shadow-xl shadow-pink-600/20 active:scale-[0.98] transition-all">
                       Deliver Message
                     </button>
-                    <p className="text-center text-stone-400 text-xs md:text-sm italic">We typically respond to all inquiries within 24 hours.</p>
+                    <p className="text-center text-stone-400 text-xs md:text-sm italic">This will open your email client to send the message.</p>
                 </form>
               </div>
             </div>
@@ -431,13 +543,14 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
             {/* Brand Section */}
             <div className="space-y-8">
-              <div className="w-20 h-20 rounded-[35%] overflow-hidden border border-stone-800 group hover:border-pink-500 transition-all duration-500">
+              <a href="#" className="block w-20 h-20 bg-stone-900 rounded-[35%] flex items-center justify-center border border-stone-800 group hover:border-pink-500 transition-all duration-500">
+                <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center border-2 border-pink-200">
                 <img 
                   src="/assets/logo2.png" 
                   alt="Kindness and Compassionate Logo" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+                  className="w-10 h-10 object-contain"/>
               </div>
+              </a>
               <div className="space-y-4">
                 <h4 className="font-serif text-2xl text-white leading-tight">Kindness & Compassionate LLC</h4>
                 <p className="text-stone-500 font-light leading-relaxed">
@@ -450,16 +563,91 @@ export default function App() {
             <div className="space-y-8">
               <h5 className="text-white font-bold uppercase tracking-widest text-xs">Navigation</h5>
               <nav className="flex flex-col gap-4 font-medium text-sm">
-                <a href="#" className="hover:text-pink-500 transition-colors">Home</a>
-                <a href="#about" className="hover:text-pink-500 transition-colors">Our Story</a>
-                <a href="#services" className="hover:text-pink-500 transition-colors">Services</a>
-                <a href="#careers" className="hover:text-pink-500 transition-colors">Join Team</a>
-                <a href="#contact" className="hover:text-pink-500 transition-colors">Contact Us</a>
+                <a href="#" className="hover:text-pink-500 transition-colors inline-flex items-center gap-2">Home</a>
+                <a href="#about" className="hover:text-pink-500 transition-colors inline-flex items-center gap-2">Our Story</a>
+                <a href="#services" className="hover:text-pink-500 transition-colors inline-flex items-center gap-2">Services</a>
+                <a href="#careers" className="hover:text-pink-500 transition-colors inline-flex items-center gap-2">Join Team</a>
+                <a href="#contact" className="hover:text-pink-500 transition-colors inline-flex items-center gap-2">Contact Us</a>
               </nav>
+            </div>
+
+            {/* Service Areas */}
+            <div className="md:col-span-2 space-y-8">
+              <h5 className="text-white font-bold uppercase tracking-widest text-xs">Service Areas</h5>
+              <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                {[
+                  "King County", "Pierce County", "Skagit County", 
+                  "Snohomish County", "Neighboring Areas"
+                ].map((location) => (
+                  <div key={location} className="flex items-center gap-3 group/loc cursor-default">
+                    <div className="w-2 h-2 rounded-full bg-pink-600 group-hover/loc:scale-150 transition-transform"></div>
+                    <span className="text-stone-400 group-hover/loc:text-white transition-colors">{location}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="pt-6 border-t border-stone-900">
+                <p className="text-sm italic text-stone-600">Proudly serving the Pacific Northwest with localized, compassionate support.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-12 border-t border-stone-900 flex flex-col md:flex-row items-center justify-between gap-10">
+            <div className="flex gap-6">
+              <a href="tel:+14259671892" className="flex items-center gap-3 text-white hover:text-pink-500 transition-colors group">
+                <div className="w-10 h-10 rounded-full bg-stone-900 flex items-center justify-center border border-stone-800 group-hover:bg-pink-600 transition-colors">
+                  <Phone className="w-4 h-4" />
+                </div>
+                <span className="font-bold">(425) 967-1892</span>
+              </a>
+              <a href="mailto:kindcompassionatellc@gmail.com" className="flex items-center gap-3 text-white hover:text-pink-500 transition-colors group">
+                <div className="w-10 h-10 rounded-full bg-stone-900 flex items-center justify-center border border-stone-800 group-hover:bg-pink-600 transition-colors">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <span className="font-bold">Email Us</span>
+              </a>
+            </div>
+
+            <div className="text-center md:text-right space-y-2">
+              <p className="text-xs font-bold uppercase tracking-tighter text-stone-600 tracking-[0.2em]">
+                &copy; 2026 Kindness & Compassionate LLC. All Rights Reserved.
+              </p>
+              <div className="flex justify-center md:justify-end gap-6 text-[10px] font-bold uppercase tracking-widest text-stone-700">
+                <a href="#" className="hover:text-stone-400">Privacy Policy</a>
+                <a href="#" className="hover:text-stone-400">Standard of Care</a>
+              </div>
             </div>
           </div>
         </div>
       </footer>
+
+      {/* Floating WhatsApp Button */}
+      <motion.a 
+        href={`https://wa.me/14259671892?text=${encodeURIComponent("Hello! I'm interested in learning more about your home care services.")}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ 
+          scale: [1, 1.05, 1],
+          opacity: 1 
+        }}
+        transition={{
+          scale: {
+            repeat: Infinity,
+            duration: 2,
+            ease: "easeInOut"
+          },
+          opacity: { duration: 0.5 }
+        }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="fixed bottom-8 right-8 z-[100] w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:bg-[#20ba5a] transition-colors group"
+      >
+        <div className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-40 -z-10"></div>
+        <MessageCircle className="w-8 h-8" />
+        <span className="absolute right-full mr-4 bg-white text-stone-900 px-4 py-2 rounded-xl text-sm font-bold shadow-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+          Chat with us on WhatsApp
+        </span>
+      </motion.a>
     </div>
   );
 }
