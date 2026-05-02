@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Phone, Heart, Users, Brain, Activity, HandHeart, Coffee, Clock, Sparkles, Utensils, Pill, Droplets, ArrowDownUp, Car, ClipboardList, Mail, Menu, X, DollarSign, TrendingUp, MessageCircle } from 'lucide-react';
+import { Phone, Heart, Users, Brain, Activity, HandHeart, Coffee, Clock, Sparkles, Utensils, Pill, Droplets, ArrowDownUp, Car, ClipboardList, Mail, Menu, X, DollarSign, TrendingUp, MessageCircle, Instagram, Facebook } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import React, { useState } from 'react';
 import { SERVICES } from '@/src/constants';
@@ -80,7 +80,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between relative">
           <div className="absolute -bottom-8 left-4 z-50">
             <a href="#" className="block w-20 h-20 bg-white rounded-full flex items-center justify-center border-4 border-stone-100 shadow-xl transition-transform hover:scale-105 active:scale-95 cursor-pointer">
-              <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center border-2 border-pink-200">
+               <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center border-2 border-pink-200">
                    <img 
                   src="/assets/logo2.png" 
                   alt="Kindness and Compassionate Logo" 
@@ -301,41 +301,26 @@ export default function App() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-white p-10 rounded-[40px] shadow-2xl border border-stone-100 lg:sticky lg:top-32"
+              className="bg-white p-10 rounded-[40px] shadow-2xl border border-stone-100 lg:sticky lg:top-32 flex flex-col items-center text-center justify-center min-h-[400px]"
             >
-                <h3 className="font-serif text-3xl mb-8">Career Application</h3>
-                <form className="space-y-6" onSubmit={handleCareerSubmit}>
-                    <div className="space-y-2 text-stone-400">
-                      <label className="text-sm font-bold uppercase tracking-widest text-stone-500 pl-1">Your Full Name</label>
-                      <input 
-                        required
-                        type="text" 
-                        placeholder="John Doe" 
-                        value={careerForm.name}
-                        onChange={(e) => setCareerForm({ ...careerForm, name: e.target.value })}
-                        className="w-full p-4 bg-stone-50 border border-stone-200 rounded-2xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all" 
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-bold uppercase tracking-widest text-stone-500 pl-1">Email Address</label>
-                      <input 
-                        required
-                        type="email" 
-                        placeholder="john@example.com" 
-                        value={careerForm.email}
-                        onChange={(e) => setCareerForm({ ...careerForm, email: e.target.value })}
-                        className="w-full p-4 bg-stone-50 border border-stone-200 rounded-2xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all" 
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-bold uppercase tracking-widest text-stone-500 pl-1">Resume / CV</label>
-                      <input type="file" className="w-full p-4 bg-stone-50 border border-stone-200 rounded-2xl file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-pink-700 hover:file:bg-pink-100" />
-                    </div>
-                    <button type="submit" className="w-full bg-pink-700 text-white p-5 rounded-2xl font-bold text-lg hover:bg-pink-800 shadow-lg shadow-pink-600/20 active:scale-95 transition-all">
-                      Submit My Application
-                    </button>
-                    <p className="text-center text-stone-400 text-sm">Submit here to open your mail client with your details.</p>
-                </form>
+                <div className="w-20 h-20 bg-pink-50 rounded-3xl flex items-center justify-center mb-8">
+                  <ClipboardList className="w-10 h-10 text-pink-600" />
+                </div>
+                <h3 className="font-serif text-3xl mb-4">Start Your Journey</h3>
+                <p className="text-stone-500 mb-10 leading-relaxed max-w-sm">
+                  We've streamlined our application process. Click below to visit our official career portal and join our family of caregivers.
+                </p>
+                <a 
+                  href="http://kindnessandcompassionate.smartcaresoftware.com/register" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-pink-700 text-white p-5 rounded-2xl font-bold text-lg hover:bg-pink-800 shadow-lg shadow-pink-600/20 active:scale-95 transition-all inline-block"
+                >
+                  Apply via Career Portal
+                </a>
+                <p className="mt-6 text-stone-400 text-sm flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-pink-400" /> Secure application via SmartCare
+                </p>
             </motion.div>
           </div>
         </div>
@@ -556,6 +541,14 @@ export default function App() {
                 <p className="text-stone-500 font-light leading-relaxed">
                   Providing professional, non-medical in-home care that empowers dignity and brings peace of mind to families.
                 </p>
+                <div className="flex gap-4 pt-2">
+                  <a href="https://www.facebook.com/share/17yLpcJWVn/" className="w-10 h-10 rounded-full bg-stone-900 border border-stone-800 flex items-center justify-center text-stone-400 hover:bg-pink-600 hover:text-white hover:border-pink-600 transition-all active:scale-95">
+                    <Facebook className="w-5 h-5" />
+                  </a>
+                  <a href="https://www.instagram.com/kindnesscompassionatellc?utm_source=qr&igsh=am9lOGM1NnQ2MWs1" className="w-10 h-10 rounded-full bg-stone-900 border border-stone-800 flex items-center justify-center text-stone-400 hover:bg-pink-600 hover:text-white hover:border-pink-600 transition-all active:scale-95">
+                    <Instagram className="w-5 h-5" />
+                  </a>
+                </div>
               </div>
             </div>
 
