@@ -164,7 +164,7 @@ export default function App() {
             className="flex-1 relative min-h-[400px] md:min-h-full"
           >
             <img 
-              src="/assets/landingp.jpeg" 
+              src="/assets/landingpg.jpg" 
               alt="Caregiver and elderly woman sharing a moment" 
               className="absolute inset-0 w-full h-full object-cover"
               referrerPolicy="no-referrer"
