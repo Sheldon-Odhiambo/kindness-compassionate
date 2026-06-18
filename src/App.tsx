@@ -183,7 +183,7 @@ export default function App() {
                 <div className="absolute -inset-10 bg-pink-100/50 rounded-full blur-3xl -z-10 animate-pulse"></div>
                 <motion.img 
                   whileHover={{ scale: 1.05, rotate: 0 }}
-                  src="/assets/about11.jpg" 
+                  src="/assets/a2.jpeg" 
                   alt="Professional caregiver" 
                   className="aspect-square object-cover rounded-2xl md:rounded-3xl shadow-xl -rotate-2 md:-rotate-3 transition-all duration-500" 
                   referrerPolicy="no-referrer" 
@@ -197,14 +197,14 @@ export default function App() {
                 />
                 <motion.img 
                   whileHover={{ scale: 1.05, rotate: 0 }}
-                  src="/assets/about4.jpg" 
+                  src="/assets/a3.jpeg" 
                   alt="Holding hands care" 
                   className="aspect-square object-cover rounded-2xl md:rounded-3xl shadow-xl rotate-2 md:rotate-3 transition-all duration-500 -mt-8 md:-mt-12" 
                   referrerPolicy="no-referrer" 
                 />
                 <motion.img 
                   whileHover={{ scale: 1.05, rotate: 0 }}
-                  src="/assets/about3.jpg" 
+                  src="/assets/landingp.jpeg" 
                   alt="Comfortable home environment" 
                   className="aspect-square object-cover rounded-2xl md:rounded-3xl shadow-xl -rotate-1 md:-rotate-2 transition-all duration-500" 
                   referrerPolicy="no-referrer" 
